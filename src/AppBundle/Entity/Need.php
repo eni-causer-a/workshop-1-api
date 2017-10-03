@@ -5,14 +5,22 @@ namespace AppBundle\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Need
  *
- * @ApiResource
+ * @ApiResource(attributes={
+ *      "validation_groups"={"post"}
+ *     })
  *
  * @ORM\Table(name="need")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\NeedRepository")
+ * @UniqueEntity(
+ *     fields={"title"},
+ *     groups={"post", "put"}
+ * )
  */
 class Need
 {
@@ -27,12 +35,17 @@ class Need
 
     /**
      * @var Commercial
+     *
+     * @Assert\NotBlank(groups={"post"})
+     *
      * @ORM\ManyToOne(targetEntity="Commercial", inversedBy="needs")
      */
     private $commercial;
 
     /**
      * @var \DateTime
+     *
+     * @Assert\NotBlank(groups={"post"})
      *
      * @ORM\Column(name="date", type="datetime")
      */
@@ -41,12 +54,16 @@ class Need
     /**
      * @var string
      *
+     * @Assert\NotBlank(groups={"post"})
+     *
      * @ORM\Column(name="client", type="string", length=255)
      */
     private $client;
 
     /**
      * @var string
+     *
+     * @Assert\NotBlank(groups={"post"})
      *
      * @ORM\Column(name="contact_name", type="string", length=255)
      */
@@ -61,6 +78,8 @@ class Need
 
     /**
      * @var string
+     *
+     * @Assert\NotBlank(groups={"post"})
      *
      * @ORM\Column(name="full_description", type="text")
      */
@@ -90,6 +109,9 @@ class Need
     /**
      * @var \DateTime
      *
+     * @Assert\NotBlank(groups={"post"})
+     * @Assert\DateTime()
+     *
      * @ORM\Column(name="start_at_latest", type="datetime")
      */
     private $startAtLatest;
@@ -97,12 +119,16 @@ class Need
     /**
      * @var int
      *
+     * @Assert\NotBlank(groups={"post"})
+     *
      * @ORM\Column(name="duration_months", type="integer")
      */
     private $durationMonths;
 
     /**
      * @var int
+     *
+     * @Assert\NotBlank(groups={"post"})
      *
      * @ORM\Column(name="duration_days_per_week", type="integer")
      */
@@ -138,6 +164,11 @@ class Need
 
     /**
      * @var string
+     *
+     * @Assert\Choice(
+     *     choices={"Open","Won","Lost"},
+     *     groups={"post", "put"}
+     * )
      *
      * @ORM\Column(name="status", type="string", length=255)
      */
