@@ -1,0 +1,31 @@
+AppBundle\Entity\Commercial:
+    collectionOperations:
+        get:
+            method: 'GET'
+    itemOperations:
+        get:
+            method: 'GET'
+
+AppBundle\Entity\Consultant:
+    collectionOperations:
+        get:
+            method: 'GET'
+        post:
+            method: 'POST'
+    itemOperations:
+        get:
+            method: 'GET'
+        put:
+            method: 'PUT'
+
+AppBundle\Entity\Need:
+    collectionOperations:
+        get:
+            method: 'GET'
+        post:
+            method: 'POST'
+    itemOperations:
+        get:
+            method: 'GET'
+        put:
+            method: 'PUT'
