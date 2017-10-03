@@ -2,11 +2,14 @@
 
 namespace AppBundle\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Need
+ *
+ * @ApiResource
  *
  * @ORM\Table(name="need")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\NeedRepository")
